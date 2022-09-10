@@ -1,143 +1,120 @@
-// chang sellect
-let selecter = $(".form-select");
-
-selecter.addEventListener("change", () => {
-  let non = $(".non__change");
-  non.textContent = selecter.value;
+const AllPokemons = pokemons.map((e, i) => {
+  return {
+    id: i,
+    num: e.num,
+    name: e.name,
+    img: e.img,
+    type: e.type,
+    height: e.height,
+    weight: e.weight,
+    candy: e.candy,
+    candy_count: e.candy_count,
+    egg: e.egg,
+    spawn_chance: e.spawn_chance,
+    avg_spawns: e.avg_spawns,
+    spawn_time: e.spawn_time,
+    multipliers: e.multipliers,
+    weaknesses: e.weaknesses,
+    next_evolution: e.next_evolution,
+  };
 });
+AllPokemons.forEach((e) => {
+  let newCard = document.createElement("div");
+  let wrapper = $("#card-items");
+  newCard.setAttribute("class", "col-lg-3 col-md-6 col-sm-12");
+  newCard.innerHTML = `                    
+                        <div class="card ">
+                            <div class="card-img text-center">
+                                <img src="${e.img}" class="img-fluid" alt="img" width="157px "
+                                    height="157px">
+                            </div>
+                            <span class="line"></span>
+                            <div class="card-body">
+                            <div class="card-like"> <i class="fa-regular fa-heart"></i></div>
+                                <div class="card-title">
+                                    <p>${e.name}</p>
+                                </div>
+                                <div class="card-category">
+                                    <p>${e.candy}</p>
+                                </div>
+                                <div class="card-info">
+                                    <div class="d-flex">
+                                        <h5 class="card-info-kg">${e.weight}</h5>
+                                        <h5 class="card-info-age">${e.candy_count} age</h5>
+                                    </div>
+                                </div>
 
-// click checkbox
+                            </div>
+                        </div>
+             `;
 
-let formInput1 = $(".input1");
-formInput1.addEventListener("click", () => {
-  let value25 = $(".input__v");
-  value25.textContent = formInput1.value;
-});
-let formInput2 = $(".input2");
-formInput2.addEventListener("click", () => {
-  let value30 = $(".input__v");
-  value30.textContent = formInput2.value;
-});
-let formInput3 = $(".input3");
-
-formInput3.addEventListener("click", () => {
-  let value35 = $(".input__v");
-  value35.textContent = formInput3.value;
-});
-
-// chesk boxs
-let onecheck = $(".one_chackbox");
-let ide = $("#ide");
-let ide1 = $("#ide1");
-let ide2 = $("#ide2");
-let ide3 = $("#ide3");
-let ide4 = $("#ide4");
-let ide5 = $("#ide5");
-let inputA = $("#flexCheckDefault"),
-  inputB = $("#flexCheckDefault1"),
-  inputC = $("#flexCheckDefault3"),
-  inputD = $("#flexCheckDefault4"),
-  inputE = $("#flexCheckDefault5"),
-  inputG = $("#flexCheckDefault6");
-
-inputA.addEventListener("click", () => {
-  if (ide.textContent == inputA.value) {
-    ide.textContent = "";
-  } else {
-    ide.textContent = inputA.value;
-  }
-});
-
-inputC.addEventListener("click", () => {
-  if (ide2.textContent == inputC.value) {
-    ide2.textContent = "";
-  } else {
-    ide2.textContent = inputC.value;
-  }
-});
-
-inputD.addEventListener("click", () => {
-  if (ide3.textContent == inputD.value) {
-    ide3.textContent = "";
-  } else {
-    ide3.textContent = inputD.value;
-  }
-});
-
-inputB.addEventListener("click", () => {
-  if (ide1.textContent == inputB.value) {
-    ide1.textContent = "";
-  } else {
-    ide1.textContent = inputB.value;
-  }
-});
-
-inputE.addEventListener("click", () => {
-  if (ide4.textContent == inputE.value) {
-    ide4.textContent = "";
-  } else {
-    ide4.textContent = inputE.value;
-  }
-});
-
-inputG.addEventListener("click", () => {
-  if (ide5.textContent == inputG.value) {
-    ide5.textContent = "";
-  } else {
-    ide5.textContent = inputG.value;
-  }
-});
-// qoshimchasiga
-let qoshimcha = $(".qoshimcha__value-value");
-let qoshimcha2 = $(".qoshimcha__value-value2");
-let qosh1 = $("#flexCheckDefault11");
-let qosh2 = $("#flexCheckDefault10");
-qosh1.addEventListener("click", () => {
-  if (qoshimcha.textContent == qosh1.value) {
-    qoshimcha.textContent = "";
-  } else {
-    qoshimcha.textContent = qosh1.value;
-  }
-});
-qosh2.addEventListener("click", () => {
-  if (qoshimcha2.textContent == qosh2.value) {
-    qoshimcha2.textContent = "";
-  } else {
-    qoshimcha2.textContent = qosh2.value;
-  }
-});
-// Btn start
-
-let btn = $(".give_form-btn");
-let bgs = $(".bgs");
-
-let bod = $("body");
-let modalText = $(".modal-text");
-btn.addEventListener("click", () => {
-  bgs.classList.add("adds");
-  bod.classList.add("ass");
-  modalText.innerHTML = "lorem sucssec ";
-  if (formInput1.value == "25cm") {
-    modalText.classList.add("modaltext");
-  } else if (formInput2.value == "30cm") {
-    modalText.classList.add("modaltext");
-  } else if (formInput3.value == "35cm") {
-    modalText.classList.add("modaltext");
-  }
-
-
-});  formInput1.addEventListener("click", () => {
-    modalText.classList.add("modaltext2");
+  wrapper.appendChild(newCard);
+  $(".card-like").addEventListener("click", (e) => {
+    console.log(e.target);
   });
-  formInput2.addEventListener("click", () => {
-    modalText.classList.add("modaltext2");
-  });
+});
 
-  formInput3.addEventListener("click", () => {
-    modalText.classList.add("modaltext2");
+// finde function
+const findePokemone = function (title) {
+  const searchPokemone = AllPokemons.filter((pokemon) => {
+    return pokemon.name.toLowerCase().includes(title);
   });
-let modalBtn = $(".modal-btn");
-modalBtn.addEventListener("click", () => {
-  bgs.classList.remove("adds");
-  bod.classList.remove("ass");
+  renderPokemone(searchPokemone);
+};
+$(".search-pokemone").addEventListener("input", (e) => {
+  e.preventDefault();
+  $("#card-items").innerHTML = "";
+  const searchTerm = $(".search-pokemone").value.trim().toLowerCase();
+  const regexpSearch = new RegExp(searchTerm, "gi");
+  const result = searchTerm.match(regexpSearch);
+  findePokemone(result);
+  console.log(result);
+});
+// render function
+function renderPokemone(searchPokemone) {
+  searchPokemone.forEach((e) => {
+    let newCard = document.createElement("div");
+    let wrapper = $("#card-items");
+    newCard.setAttribute("class", "col-lg-3 col-md-6 col-sm-12");
+    newCard.innerHTML = `                    
+                        <div class="card ">
+                            <div class="card-img text-center">
+                                <img src="${e.img}" class="img-fluid" alt="img" width="157px "
+                                    height="157px">
+                            </div>
+                            <span class="line"></span>
+                            <div class="card-body">
+
+                            <div class="like"> <i class="fa-solid fa-heart"></i></div>
+                                <div class="card-title">
+                                    <p>${e.name}</p>
+                                </div>
+
+                                <div class="card-category">
+                                    <p>${e.candy}</p>
+                                </div>
+
+                                <div class="card-info">
+                                    <div class="d-flex">
+                                        <h5 class="card-info-kg">${e.weight}</h5>
+                                        <h5 class="card-info-age">${e.candy_count} age</h5>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+             `;
+    wrapper.appendChild(newCard);
+  });
+}
+
+
+// click like start
+
+$(".click-like i").addEventListener('click', () => {
+  $(".sidebar").classList.add('block')
+})
+$(".sidebar-back i").addEventListener("click", () => {
+  $(".sidebar").classList.remove("block");
 });
